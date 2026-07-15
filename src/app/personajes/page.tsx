@@ -1,4 +1,6 @@
 import { simpsonsApi } from "@/api/simpsons"
+import ButoonNext from "../components/ui/ButoonNext"
+import { count } from "console";
 
 interface Personaje {
     id: number,
@@ -6,7 +8,8 @@ interface Personaje {
 }
 
 export default async function PersonajesPage() {
-    const personajes = await simpsonsApi.getPersonajes();
+    const personajes = await simpsonsApi.getPersonajes(1);
+    let countp = 0;
     return(
         <main className="flex flex-1 flex-col">
             <h1>Personajes</h1>
@@ -18,7 +21,7 @@ export default async function PersonajesPage() {
                         </p>
                     </div>
                 ))}
-                
+                <ButoonNext count={ countp} />
             </div>
         </main>
     )
