@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { LinkProps } from "./types"
+import { LinkProps } from "../types"
 
 export default function ButoonPage({children, ruta}: LinkProps) {
     return (

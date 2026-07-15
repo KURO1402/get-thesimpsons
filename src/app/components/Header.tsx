@@ -3,7 +3,7 @@ import SelectorHeader from './ui/SelectorHeader'
 
 export default function Header() {
     return (
-        <header className="grid grid-cols-3 border-b-2 border-[#fbdd05] shadow-sm shadow-[#fbdd05] p-4  items-center justify-between bg-[#FDFBF7]">
+        <header className="flex border-b-2 border-[#fbdd05] shadow-sm shadow-[#fbdd05] p-4  items-center justify-between bg-[#FDFBF7]">
             <div className='col-span-1'>
                 <Image src="/the_simpsons.png" width={80} height={80} alt="Logo de los simpsons"></Image>
             </div>
