@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Personaje } from "../types";
+import ListPhrases from "./ListPhrases";
 const PersonajeCard = ({
   id,
   age,
@@ -12,13 +13,13 @@ const PersonajeCard = ({
   status,
 }: Personaje) => {
   return (
-    <div className="flex shadow shadow-2xl bg-white rounded-2xl flex-col p-2 border border-1 border-gray-200 hover:translate-y-2 transition">
+    <div className="flex group shadow shadow-2xl bg-white rounded-2xl flex-col px-3 pt-3 pb-5 border border-1 border-gray-200 hover:translate-y-2 transition">
       <div className="flex">
         <span className="bg-yellow-200 p-1 rounded-2xl font-bold text-yellow-800">
           #{id}
         </span>
       </div>
-      <div className=" flex justify-center items-center">
+      <div className="flex justify-center items-center group-hover:-rotate-10 transition">
         <Image
           className="border border-1 border-gray-200 rounded-xl"
           src={`https://cdn.thesimpsonsapi.com/500${portrait_path}`}
@@ -32,56 +33,22 @@ const PersonajeCard = ({
       </div>
       <div className="">
         <ul className="">
-          <li>Edad: {age || "desconocido"}</li>
-          <li>Fechas Nac: {birthdate || "desconocido"}</li>
-          <li>Genero: {gender}</li>
-          <li>Ocupation: {occupation}</li>
+          <li><strong>Edad:</strong> {age || "desconocido"}</li>
+          <li><strong>Fechas Nac:</strong> {birthdate || "desconocido"}</li>
+          <li><strong>Género:</strong> {gender}</li>
+          <li><strong>Ocupación(es):</strong> {occupation}</li>
         </ul>
       </div>
-      <div></div>
-      <details className="group relative inline-block text-left">
-        <summary className="flex items-center gap-2 list-none bg-yellow-100 text-yellow-700 px-4 py-2 rounded-lg cursor-pointer select-none border border-yellow-500 hover:bg-yellow-200 transition-colors duration-200 [&::-webkit-details-marker]:hidden">
-          <span
-            role="button"
-            aria-haspopup="menu"
-            aria-expanded="false"
-            aria-label="Mostrar frases del personaje"
-            className="flex items-center gap-2 font-medium"
-          >
-            Frases del Personaje
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="size-4 transition-transform duration-200 group-open:rotate-180"
-            >
-              <path d="M6 9l6 6 6-6" />
-            </svg>
-          </span>
-        </summary>
+      <div className="mt-auto pt-2">
+        <ListPhrases phrases={phrases}/>
+      </div>
 
-        <div className="absolute left-0 mt-2 w-full min-w-[16rem] bg-yellow-50 border border-yellow-300 rounded-lg shadow-lg p-4 text-gray-700 z-10">
-          {phrases.length > 0 ? (
-            <ul className="space-y-1">
-              {phrases.map((p) => (
-                <li key={p} className="flex gap-2 text-sm leading-snug">
-                  <span className="text-yellow-600">•</span>
-                  <span>{p}</span>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-sm text-gray-400 italic">
-              Sin frases disponibles
-            </p>
-          )}
+      <div className="mt-auto pt-2">
+        <div className="h-6 flex justify-between items-center text-white text-xs px-2">
+          <span></span>
+          <span className={`p-2 text-sm font-bold rounded-3xl border-1 ${status == "Alive" ? "bg-green-100 text-green-500": status == "Deceased" ? "bg-red-100 text-red-500": "bg-gray-100 text-gray-500"}`}>{status}</span>
         </div>
-      </details>
-      <span>{status}</span>
+      </div>
     </div>
   );
 };
