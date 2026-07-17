@@ -35,7 +35,7 @@ const PersonajesList = () => {
         setPage((prevPage) => prevPage + 1);
     }
     return (
-            <div className="grid grid-cols-4 gap-5">
+            <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5">
                 {personajes.map((p: Personaje) => (
                     <PersonajeCard key={p.id} id={p.id} age={p.age} birthdate={p.birthdate} gender={p.gender} name={p.name} occupation={p.occupation} portrait_path={p.portrait_path} phrases={p.phrases} status={p.status}/>
                 ))}
